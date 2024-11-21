@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class LabelPlaza extends JLabel {
     public LabelPlaza(String text) {
@@ -10,6 +11,10 @@ public class LabelPlaza extends JLabel {
 
     public void setTexto(String text) {
         this.setText(text);
+    }
+
+    public void setColor(Color color) {
+        this.setForeground(color);
     }
 
 }

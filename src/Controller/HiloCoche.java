@@ -11,7 +11,7 @@ public class HiloCoche extends Thread {
 
     public void run() {
         while (true) {
-            Coche coche = new Coche(Color.red, ParkingController.generarMatricula());
+            Coche coche = new Coche(ParkingController.generarColorRandom(), ParkingController.generarMatricula());
             System.out.println("El coche con matricula " + coche.getMatricula() + " esta acercandose al parking");
 
             /**

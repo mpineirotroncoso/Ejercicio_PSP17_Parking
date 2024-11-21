@@ -8,9 +8,11 @@ import java.util.List;
 public class MainWindow extends JFrame {
 
 
-    public MainWindow(List<LabelPlaza> plazas) {
+    public MainWindow(List<LabelPlaza> plazas, CartelLleno cartelLleno) {
 
-        add(new Aparcamiento(plazas));
+        add(new Aparcamiento(plazas, cartelLleno));
+
+        //add(cartelLleno);
 
         setTitle("Parking");
         setSize(400, 400);
