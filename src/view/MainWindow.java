@@ -16,6 +16,7 @@ public class MainWindow extends JFrame {
 
         setTitle("Parking");
         setSize(400, 400);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
