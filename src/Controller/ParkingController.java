@@ -99,15 +99,14 @@ public class ParkingController {
     }
 
     public static String generarMatricula() {
-        String matricula = "";
+        StringBuilder matricula = new StringBuilder();
         for (int i = 0; i < 4; i++) {
-            matricula += (char) (Math.random() * 26 + 'A');
+            matricula.append((int) (Math.random() * 10));
         }
-        matricula += "-";
-        for (int i = 0; i < 4; i++) {
-            matricula += (char) (Math.random() * 26 + 'A');
+        for (int i = 0; i < 3; i++) {
+            matricula.append((char) (Math.random() * 26 + 'A'));
         }
-        return matricula;
+        return matricula.toString();
     }
 
     public static Coche getCocheFromMatricula(String matricula) {
