@@ -2,15 +2,23 @@ package Controller;
 
 import model.Coche;
 import model.Parking;
+import view.Aparcamiento;
+import view.LabelPlaza;
 import view.MainWindow;
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingController {
     static Parking parking = new Parking();
     static int plazasTotales = parking.getPlazas();
     static List<Coche> cochesDentro = parking.getCochesDentro();
+    static List<LabelPlaza> labelPlazas = new ArrayList<>(10);
+    static {
+        for (int i = 0; i < 10; i++) {
+            labelPlazas.add(new LabelPlaza("Vacio"));
+        }
+    }
 
     public static boolean entrarCoche(Coche coche) {
         //Coche coche = new Coche(Color.red, "1234ABC");
@@ -20,6 +28,7 @@ public class ParkingController {
             return false;
         }
         cochesDentro.add(coche);
+        actualizarInterfaz();
         return true;
     }
 
@@ -30,6 +39,7 @@ public class ParkingController {
                 if (cochesDentro.get(i).getMatricula() == matricula ) {
                     cochesDentro.remove(i);
                     //System.out.println("Coche sale del parking");
+                    actualizarInterfaz();
                     return true;
                 }
             }
@@ -38,14 +48,13 @@ public class ParkingController {
         return false;
     }
 
-    public static boolean parkingLleno() {
-        System.out.println(cochesDentro);
-
-        System.out.println("Hay " + cochesDentro.size() + " coches");
-        if (cochesDentro.size() >= plazasTotales) {
-            return true;
-        } else {
-            return false;
+    private static void actualizarInterfaz() {
+        for (int i = 0; i < labelPlazas.size(); i++) {
+            if (i < cochesDentro.size()) {
+                labelPlazas.get(i).setTexto(cochesDentro.get(i).getMatricula());
+            } else {
+                labelPlazas.get(i).setTexto("Vacio");
+            }
         }
     }
 
@@ -58,15 +67,13 @@ public class ParkingController {
         return cochesDentro.get(i).getMatricula();
     }
 
-    public static int getIntCochesDentro() {
-        return cochesDentro.size();
-    }
 
     public static void iniciarParking() {
-        MainWindow mainWindow = new MainWindow();
+        ParkingController.actualizarInterfaz();
+        MainWindow mainWindow = new MainWindow(labelPlazas);
         mainWindow.setVisible(true);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 15; i++) {
             HiloCoche hiloCoche = new HiloCoche();
             hiloCoche.start();
         }

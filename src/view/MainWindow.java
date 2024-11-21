@@ -6,9 +6,11 @@ import javax.swing.*;
 import java.util.List;
 
 public class MainWindow extends JFrame {
-    public MainWindow() {
 
-        add(new Aparcamiento());
+
+    public MainWindow(List<LabelPlaza> plazas) {
+
+        add(new Aparcamiento(plazas));
 
         setTitle("Parking");
         setSize(400, 400);

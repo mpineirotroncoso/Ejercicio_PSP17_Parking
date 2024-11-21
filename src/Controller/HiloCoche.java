@@ -30,7 +30,6 @@ public class HiloCoche extends Thread {
                 hiloCoche.start();
                 return;
             }
-            ParkingController.entrarCoche(coche);
 
 
             random = (int) (Math.random() * 20000);
