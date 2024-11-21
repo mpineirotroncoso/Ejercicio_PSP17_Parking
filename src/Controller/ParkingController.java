@@ -37,12 +37,10 @@ public class ParkingController {
     }
 
     public static boolean salirCoche(String matricula) {
-
         if (!cochesDentro.isEmpty()) {
             for (int i = 0; i < cochesDentro.size(); i++) {
-                if (cochesDentro.get(i).getMatricula() == matricula ) {
+                if (cochesDentro.get(i).getMatricula().equals(matricula)) {
                     cochesDentro.remove(i);
-                    //System.out.println("Coche sale del parking");
                     actualizarInterfaz();
                     return true;
                 }
@@ -103,6 +101,7 @@ public class ParkingController {
         for (int i = 0; i < 4; i++) {
             matricula.append((int) (Math.random() * 10));
         }
+        matricula.append(" ");
         for (int i = 0; i < 3; i++) {
             matricula.append((char) (Math.random() * 26 + 'A'));
         }
